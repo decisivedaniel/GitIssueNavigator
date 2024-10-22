@@ -17,12 +17,16 @@ export async function getIssuesFromAPI (owner:string, repo:string) {
         console.log(response.data[0].number);
     } catch (error) {
         if (error instanceof RequestError) {
-            if (error.status === 404) {
-                console.log("Repo doesn't exist or is not public");
-            } else if (error.status === 301) {
-                console.log("Moved Permantly");
-            } else {
-                console.log(`unknown error: ${error.status}`);
+            switch (error.status) {
+                case 301:
+                    console.log("Moved Permantly");
+                    break;
+                case 404:
+                    console.log("Issue was not found");
+                    break;
+                default:
+                    console.log(`unknown error: ${error.status}`);
+                    break;
             }
         } else {
             throw error;
@@ -45,12 +49,22 @@ export async function getIssueFromAPI (owner:string, repo:string, issueNum:numbe
         console.log(response.data.title);
     } catch (error) {
         if (error instanceof RequestError) {
-            if (error.status === 404) {
-                console.log("Repo doesn't exist or is not public");
-            } else if (error.status === 301) {
-                console.log("Moved Permantly");
-            } else {
-                console.log(`unknown error: ${error.status}`);
+            switch (error.status) {
+                case 301:
+                    console.log("Moved Permantly");
+                    break;
+                case 304:
+                    console.log("Issue was not motified");
+                    break;
+                case 404:
+                    console.log("Issue was not found");
+                    break;
+                case 410:
+                    console.log("Issue is Removed")
+                    break;
+                default:
+                    console.log(`unknown error: ${error.status}`);
+                    break;
             }
         } else {
             throw error;
