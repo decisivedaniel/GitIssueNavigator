@@ -33,9 +33,15 @@ export class IssueForm extends React.Component<{}, State> {
     render() {
         return (
             <div>
-                <input type="text" value={this.state.owner} onChange={this.onOwnerChange} />
-                <input type="text" value={this.state.repo} onChange={this.onRepoChange} />
-                <input type="text" value={this.state.issueNum} onChange={this.onNumberChange} />
+                <label> 
+                    Owner: <input type="text" name="owner" value={this.state.owner} onChange={this.onOwnerChange} />
+                </label>
+                <label>
+                    Repo: <input type="text" name="repo" value={this.state.repo} onChange={this.onRepoChange} />
+                </label>
+                <label>
+                    Issue Number: <input type="text" name="number" value={this.state.issueNum} onChange={this.onNumberChange} />
+                </label>
                 <input type="button" value="Retrieve" onClick={this.onSubmit} />
             </div>
         )
