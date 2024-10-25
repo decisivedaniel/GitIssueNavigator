@@ -1,11 +1,15 @@
 import { Octokit, } from "@octokit/core";
 import { RequestError } from "@octokit/request-error";
+import type { Endpoints } from '@octokit/types';
+
+export type issuesResponse = Endpoints["GET /repos/{owner}/{repo}/issues"]["response"]["data"];
+export type issueResponse = Endpoints[`GET /repos/{owner}/{repo}/issues/{issue_number}`]["response"]["data"]
 
 const octokit = new Octokit({});
 
 export async function getIssuesFromAPI (owner:string, repo:string) {
     try {
-        const response = await octokit.request(`GET /repos/{owner}/{repo}/issues`, {
+        const response = await octokit.request("GET /repos/{owner}/{repo}/issues", {
             owner: owner,
             repo: repo,
             headers: {
@@ -14,7 +18,7 @@ export async function getIssuesFromAPI (owner:string, repo:string) {
             }
         });
         console.log("Got response");
-        console.log(response.data[0].number);
+        return response.data;
     } catch (error) {
         if (error instanceof RequestError) {
             switch (error.status) {
@@ -46,7 +50,7 @@ export async function getIssueFromAPI (owner:string, repo:string, issueNum:numbe
             }
         });
         console.log("Got response");
-        console.log(response.data.title);
+        return response.data;
     } catch (error) {
         if (error instanceof RequestError) {
             switch (error.status) {
