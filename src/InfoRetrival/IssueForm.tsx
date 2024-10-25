@@ -1,16 +1,19 @@
 import React from 'react';
-import { getIssuesFromAPI, getIssueFromAPI } from './gitService';
+import { getIssuesFromAPI, issuesResponse } from './gitService';
 
 type State = {
     owner: string;
     repo: string;
-    issueNum: number
 }
-export class IssueForm extends React.Component<{}, State> {
+
+type IssueFormProps = {
+    setParent: (list:issuesResponse) => void;
+}
+
+export class IssueForm extends React.Component<  IssueFormProps , State> {
     state = {
         owner: "",
-        repo: "",
-        issueNum: 0
+        repo: ""
     };
 
     onOwnerChange = (e: React.FormEvent<HTMLInputElement>): void => {
@@ -19,16 +22,12 @@ export class IssueForm extends React.Component<{}, State> {
     onRepoChange = (e: React.FormEvent<HTMLInputElement>): void => {
         this.setState({ repo: e.currentTarget.value});
     };
-    onNumberChange = (e: React.FormEvent<HTMLInputElement>): void => {
-        this.setState({ issueNum: Number(e.currentTarget.value)});
-    };
     onSubmit = (e: React.FormEvent<HTMLInputElement>): void => {
-        if (this.state.issueNum > 0) {
-            getIssueFromAPI(this.state.owner,this.state.repo, this.state.issueNum)
-        } else {
-            getIssuesFromAPI(this.state.owner, this.state.repo);
-        }
-        
+        const response = getIssuesFromAPI(this.state.owner, this.state.repo);
+        response.then((data) => 
+            {if(data !== undefined){
+                this.props.setParent(data)
+            }});
     }
     render() {
         return (
@@ -38,9 +37,6 @@ export class IssueForm extends React.Component<{}, State> {
                 </label>
                 <label>
                     Repo: <input type="text" name="repo" value={this.state.repo} onChange={this.onRepoChange} />
-                </label>
-                <label>
-                    Issue Number: <input type="text" name="number" value={this.state.issueNum} onChange={this.onNumberChange} />
                 </label>
                 <input type="button" value="Retrieve" onClick={this.onSubmit} />
             </div>
