@@ -20,7 +20,7 @@ export async function getIssuesFromAPI (owner:string, repo:string) {
             }
         });
         console.log("Got response");
-        return response.data;
+        return response.data.filter((issue)=>issue.pull_request === undefined);
     } catch (error) {
         if (error instanceof RequestError) {
             switch (error.status) {
@@ -90,6 +90,7 @@ export async function getRateLimit () {
         });
         console.log("Got Response");
         console.log(response.data.rate.remaining);
+        console.log("Time Remaining: %d", response.data.rate.reset - Math.round(Date.now()/1000));
     } catch (error) {
         console.log(error);
     }
