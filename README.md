@@ -1,6 +1,11 @@
 # GitIssueNavigator
 New React application to view git issues 
 
+To run:
+1. clone the repo 
+2. open repo in terminal 
+3. run ``npm start`` 
+
 
 # Design Decisions
 
@@ -29,3 +34,7 @@ The api call to the github issues on a repo also returns pull requests as they s
 ## Reactions
 
 Copying and pasting all the individual github reactions would have been an pain in its component. As a result found a way [on stack overflow](https://stackoverflow.com/a/64174790) to create a list of elements then use that as a type. This way we can make a unit reaction that gets the correct type for typescript compiling, but there also is a way to interate through the list and easily cover them all without code copying.
+
+## Comment Retrival
+
+Issues contain a number of comments with a Url to the information related to them. This poses some issues as this app doesn't pass the state of the owner and repo under query to the issue component. This is gotten around by splitting the url of the comment then using the octokit api to make the comment request. This is not advisable as the api can change overtime and lead to a breaking change in this parser. Future work would need to have a more complex state being passed from the overview component to the issue detail component. Then using this information to make the query directly. 
