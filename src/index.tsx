@@ -2,14 +2,22 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import { List } from './RepoIssues/List'
+import { IssueDetail } from './RepoIssues/IssueDetail';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <List />
+    <Router>
+      <Routes>
+        <Route path="/" element={<List/>} />
+        <Route path="/issue" element={<IssueDetail/>} />
+      </Routes>
+    </Router>
+    
   </React.StrictMode>
 );
 
