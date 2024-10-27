@@ -15,6 +15,10 @@ A rate limit button was added to check for 403 issues related to api usage. Will
 
 Issue body can be accented with markdown, to display this properly the react.markdown package was utilized as it will create all the dom elements needed to represent the data while keeping the current project more lightweight.
 
+## Navigation
+
+Current system uses the router routes method to create the overview and the detail view. This leads to issues with returning from the detail view not maintaining the history of searched information. This causes greater issues as users will have to re-type the information and query the api further costing the limit number of api calls that can be made. Future work would remake this to use the later Navigation history system that stores this information more easily.
+
 
 # Challenges
 
