@@ -1,5 +1,6 @@
 import React from 'react';
 import { getIssuesFromAPI, issuesResponse, getRateLimit } from './gitService';
+import './IssueForm.css'
 
 type State = {
     owner: string;
@@ -31,7 +32,7 @@ export class IssueForm extends React.Component<  IssueFormProps , State> {
     }
     render() {
         return (
-            <div>
+            <div className='IssueForm' >
                 <label> 
                     Owner: <input type="text" name="owner" value={this.state.owner} onChange={this.onOwnerChange} />
                 </label>
