@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import { List } from './RepoIssues/List'
+import { IssueList } from './RepoIssues/IssueList'
 import { IssueDetail } from './RepoIssues/IssueDetail';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
@@ -13,7 +13,7 @@ root.render(
   <React.StrictMode>
     <Router>
       <Routes>
-        <Route path="/" element={<List/>} />
+        <Route path="/" element={<IssueList/>} />
         <Route path="/issue" element={<IssueDetail/>} />
       </Routes>
     </Router>
