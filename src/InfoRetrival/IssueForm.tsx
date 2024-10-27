@@ -13,8 +13,8 @@ type IssueFormProps = {
 
 export class IssueForm extends React.Component<  IssueFormProps , State> {
     state = {
-        owner: "decisiveDaniel",
-        repo: "GitIssueNavigator"
+        owner: "",
+        repo: ""
     };
 
     onOwnerChange = (e: React.FormEvent<HTMLInputElement>): void => {
