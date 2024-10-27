@@ -5,6 +5,7 @@ import type { Endpoints } from '@octokit/types';
 export type issuesResponse = Endpoints["GET /repos/{owner}/{repo}/issues"]["response"]["data"];
 export type issueResponse = Endpoints[`GET /repos/{owner}/{repo}/issues/{issue_number}`]["response"]["data"]
 export type commentResponse = Endpoints['GET /repos/{owner}/{repo}/issues/{issue_number}/comments']["response"]["data"]
+export type reactionResponse = Endpoints[`GET /repos/{owner}/{repo}/issues/{issue_number}`]["response"]["data"]["reactions"]
 
 const octokit = new Octokit({});
 
