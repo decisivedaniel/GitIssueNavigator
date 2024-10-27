@@ -15,7 +15,8 @@ export async function getIssuesFromAPI (owner:string, repo:string) {
             repo: repo,
             headers: {
                 'X-Github-Api-Version': '2022-11-28',
-                'accept': 'application/vnd.github+json'
+                'accept': 'application/vnd.github+json',
+                'user-agent': 'GitIssueNavigator'
             }
         });
         console.log("Got response");
@@ -47,7 +48,8 @@ export async function getIssueFromAPI (owner:string, repo:string, issueNum:numbe
             issue_number: issueNum,
             headers: {
                 'X-Github-Api-Version': '2022-11-28',
-                'accept': 'application/vnd.github+json'
+                'accept': 'application/vnd.github+json',
+                'user-agent': 'GitIssueNavigator'
             }
         });
         console.log("Got response");
@@ -74,5 +76,21 @@ export async function getIssueFromAPI (owner:string, repo:string, issueNum:numbe
         } else {
             throw error;
         }
+    }
+}
+
+export async function getRateLimit () {
+    try {
+        const response = await octokit.request('GET /rate_limit' , {
+            headers: {
+                'X-Github-Api-Version': '2022-11-28',
+                'accept': 'application/vnd.github+json',
+                'user-agent': 'GitIssueNavigator'
+            }
+        });
+        console.log("Got Response");
+        console.log(response.data.rate.remaining);
+    } catch (error) {
+        console.log(error);
     }
 }
