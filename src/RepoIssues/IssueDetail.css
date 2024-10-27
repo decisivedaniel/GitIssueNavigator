@@ -1,0 +1,7 @@
+.IssueDetail {
+    background-color: slategrey;
+    text-align: center;
+    font-size: calc(10px + 2vmin);
+    min-height: 100vh;
+    height:100%;
+}

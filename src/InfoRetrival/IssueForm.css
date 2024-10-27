@@ -1,0 +1,11 @@
+.IssueForm{
+    padding: 5px;
+    margin: auto;
+    width: fit-content;
+}
+
+.IssueForm input {
+    margin:10px;
+    height: calc(10px + 2vmin);
+    font-size: calc(4px + 1vmin);
+}

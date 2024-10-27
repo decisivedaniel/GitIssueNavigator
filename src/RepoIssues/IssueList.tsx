@@ -2,6 +2,7 @@ import React, { useState, Suspense } from 'react';
 import { IssueForm } from '../InfoRetrival/IssueForm';
 import { issueResponse } from '../InfoRetrival/gitService';
 import { Link } from 'react-router-dom';
+import "./IssueList.css"
 
 interface IssueOverviewProps {
   issue: issueResponse;
@@ -20,11 +21,11 @@ export function IssueList() {
   const [list, setList] = useState(Array<issueResponse>);
 
   return (
-    <div className="List">
+    <div className="IssueList">
       <IssueForm setParent={setList} />
       <Suspense fallback={<p>Retrieving Information....</p>}>
         {list.map((entry) => (
-          <li key={entry.id.toString()}>
+          <li className='Issue' key={entry.id.toString()}>
             <IssueOverview issue={entry}/>
           </li>
         ))}

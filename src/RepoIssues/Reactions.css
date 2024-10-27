@@ -1,0 +1,13 @@
+.Reactions {
+    display: inline-flex;
+    flex-direction: row;
+}
+
+.Reaction {
+    border-color: black;
+    border-width: 1dvb;
+    border-radius: 1dvb;
+    border-style: solid;
+    background-color: cornsilk;
+    margin: 10px;
+}
